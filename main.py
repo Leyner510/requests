@@ -24,7 +24,7 @@ list_.append(best_intelligence('Captain America'))
 pprint(f'Максимальное значение интелекта у: {max(list_)} ')
 
 
-TOKEN = 'y0_AgAAAAA9-SULAADLWwAAAADbRjav2qClUl1cQMWr6qMuwCXDxnbaVaw'
+TOKEN = ''
 
 class YandexDisk:
 
@@ -51,10 +51,10 @@ class YandexDisk:
         response.raise_for_status()
         if response.status_code == 201:
             print("Success")
-# if __name__ == '__main__':
-#     ya = YandexDisk(token=TOKEN)
-#     pprint(ya.upload_file_to_disk(disk_file_path="netology/test23.txt",
-#                                   filename="test.txt"))
+if __name__ == '__main__':
+    ya = YandexDisk(token=TOKEN)
+    pprint(ya.upload_file_to_disk(disk_file_path="netology/test23.txt",
+                                  filename="test.txt"))
 
 
 
