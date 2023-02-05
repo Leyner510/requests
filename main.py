@@ -1,25 +1,30 @@
 import requests
 from pprint import pprint
+import operator
 
 superhero_list = ['Hulk', 'Captain America', 'Thanos']
 url = 'https://akabab.github.io/superhero-api/api/all.json'
 responce = requests.get(url)
-heroes = {}
+heroes = []
+res = []
 def best_intelligence(superhero_list):
       for a in responce.json():
             if a['name'] in superhero_list:
-                heroes.setdefault(a['name'])
                 value = a['powerstats']
                 keys_ = value.pop('intelligence')
-                return keys_
+                heroes.append(a['name'])
+                heroes.append(keys_)
+                dct = dict(zip(heroes[::2], heroes[1::2]))
+                x = max(dct.items(), key=operator.itemgetter(1))
+                return x
 list_ = []
 list_.append(best_intelligence('Hulk'))
 list_.append(best_intelligence('Thanos'))
 list_.append(best_intelligence('Captain America'))
-print(f'Максимальное значение интелекта составляет: {max(list_)}')
+pprint(f'Максимальное значение интелекта у: {max(list_)} ')
 
 
-TOKEN = ''
+TOKEN = 'y0_AgAAAAA9-SULAADLWwAAAADbRjav2qClUl1cQMWr6qMuwCXDxnbaVaw'
 
 class YandexDisk:
 
@@ -46,10 +51,10 @@ class YandexDisk:
         response.raise_for_status()
         if response.status_code == 201:
             print("Success")
-if __name__ == '__main__':
-    ya = YandexDisk(token=TOKEN)
-    pprint(ya.upload_file_to_disk(disk_file_path="netology/test23.txt",
-                                  filename="test.txt"))
+# if __name__ == '__main__':
+#     ya = YandexDisk(token=TOKEN)
+#     pprint(ya.upload_file_to_disk(disk_file_path="netology/test23.txt",
+#                                   filename="test.txt"))
 
 
 
